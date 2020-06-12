@@ -3,20 +3,22 @@ import { Injectable } from '@angular/core';
 import { AddProduct, RemoveProduct } from '../actions/basket.actions';
 
 export interface Product {
+  id: string|number;
   name: string;
   description: string;
   price: number;
+  img?: string;
 }
 
 export interface BasketState {
-  total: number;
+  amount: number;
   products: Array<Product>;
 }
 
 @State<BasketState>({
   name: 'basket',
   defaults: {
-    total: 0,
+    amount: 0,
     products: []
   }
 })
@@ -25,13 +27,17 @@ export interface BasketState {
 export class Basket {
 
   @Action(AddProduct)
-  addProduct({ patchState, getState, setState }: StateContext<BasketState>) {
-    console.log();
+  addProduct({ patchState, getState, setState }: StateContext<BasketState>, { product }: AddProduct) {
+    const state = getState();
+    setState({
+      amount: state.amount + product.price,
+      products: [...state.products, product]
+    });
   }
 
   @Action(RemoveProduct)
   removeProduct({ patchState, getState, setState }: StateContext<BasketState>) {
-    console.log();
+    console.log(getState());
   }
 
 }

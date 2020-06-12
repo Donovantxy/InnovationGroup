@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot -o --port 5550 --watch",
+    "start": "ng serve --aot -o --port 5550 --watch --proxy-config ./src/proxy.config.json",
     "build": "ng build --aot",
+    "server": "tsc -p tsconfig.server.json && cp ./src/server/products.json ./dist/server",
+    "postserver": "node ./dist/server/server.js",
     "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

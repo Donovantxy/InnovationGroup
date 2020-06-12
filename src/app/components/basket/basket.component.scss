@@ -1,0 +1,8 @@
+@import '~src/style/colors';
+
+div {
+  cursor: pointer;
+  svg {
+    fill: $purple;
+  }
+}

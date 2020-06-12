@@ -1,0 +1,37 @@
+@import '~src/style/variables';
+@import '~src/style/colors';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+  min-width: 150px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 12px -2px #CCC;
+  &__img {
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+  }
+  &__info {
+    background-color: $white;
+    padding: 15px;
+    h3 {
+      font-size: $fm;
+      font-weight: 500;
+      margin-top: 0;
+    }
+    p {
+      font-size: $fs;
+    }
+    &__price {
+      font-size: $fn;
+      color: $purple;
+    }
+    &__ico {
+      text-align: right;
+      margin-top: 10px;
+    }
+  }
+}

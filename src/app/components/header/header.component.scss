@@ -1,0 +1,25 @@
+@import '~src/style/variables';
+@import '~src/style/colors';
+
+.header {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  justify-content: space-between;
+  &__title {
+    font-size: $fxxl;
+  }
+  &__basket {
+    display: flex;
+    align-items: baseline;
+    label, &__amount {
+      font-size: 1.6rem;
+    }
+    label {
+      margin-right: 16px;
+    }
+    &__amount {
+      color: $purple;
+    }
+  }
+}

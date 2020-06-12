@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "lib": ["es6", "dom"],
+    "target": "es2017",
+    "module": "commonjs",
+  },
+  "include": [
+    "./src/server/**/*.ts",
+  ]
+}

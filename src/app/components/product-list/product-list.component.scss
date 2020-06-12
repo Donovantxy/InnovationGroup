@@ -1,0 +1,22 @@
+@import '~src/style/variables';
+@import '~src/style/colors';
+
+.sort{
+  text-align: right;
+  margin: 10px 0;
+  a {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: $fs;
+    &.active {
+      color: $purple;
+    }
+  }
+}
+ul {
+  flex-wrap: wrap;
+  justify-content: center;
+  li {
+    margin: 0 15px 30px;
+  }
+}
