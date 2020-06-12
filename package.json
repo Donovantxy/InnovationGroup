@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --aot -o --port 5550 --watch",
+    "build": "ng build --aot",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,7 +22,8 @@
     "@angular/router": "~9.1.11",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@ngxs/store": "^3.6.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.8",
