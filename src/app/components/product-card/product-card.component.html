@@ -6,7 +6,7 @@
   </a>
   <div class="card__info">
     <h3><a [routerLink]="'/product/'+product.id">{{product.name}}</a></h3>
-    <p>{{product.description.substring(0, 100)}}...</p>
+    <p [innerHTML]="product.description.substring(0, 100)+'...'"></p>
     <div class="card__info__price">{{product.price | currency:'GBP'}}</div>
     <div class="card__info__ico">
       <app-basket [size]="30" [product]="product"></app-basket>
