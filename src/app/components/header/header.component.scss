@@ -24,6 +24,12 @@
     }
     &__amount {
       color: $purple;
+      transition: $basket-anim-time;
+      transform: scale(1);
+      &--changing {
+        color: lighten($purple, 20%);
+        transform: scale(1.25);
+      }
     }
   }
   @include md {

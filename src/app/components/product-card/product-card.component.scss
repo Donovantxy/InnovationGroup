@@ -11,7 +11,7 @@
   box-shadow: 0 0 12px -2px #CCC;
   &__img {
     height: 170px;
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     cursor: pointer;
   }
@@ -38,6 +38,13 @@
     &__ico {
       text-align: right;
       margin-top: 10px;
+    }
+  }
+  &--anim {
+    transition: $card-anim-time;
+    .card__img {
+      transition: $card-anim-time;
+      filter: saturate(80%);
     }
   }
 }

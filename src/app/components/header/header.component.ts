@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  public amount: number;
+  amount: number;
+  gotChanged = false;
   private subscribe: Subscription;
 
   constructor(private store: Store) { }
@@ -19,6 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribe = this.store.subscribe( ({ basket }) => {
       this.amount = basket.amount;
+      this.gotChanged = true;
+      setTimeout(() => {
+        this.gotChanged = false;
+      }, 200);
     });
   }
 

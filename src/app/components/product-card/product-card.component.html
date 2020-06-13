@@ -1,4 +1,4 @@
-<div *ngIf="product" class="card">
+<div *ngIf="product" class="card card--anim">
   <a [routerLink]="'/product/'+product.id">
     <div class="card__img" 
       [ngStyle]="{'background-image': 'url(assets/img/products/'+product.img+')'}">

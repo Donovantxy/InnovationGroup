@@ -32,6 +32,20 @@ ul {
     grid-gap: 40px;
     li {
       margin-bottom: 0px;
+      transform: scale(1);
+      transition: $card-anim-time ease-out;
+      &:hover {
+        transform: scale(1.05);
+        ::ng-deep {
+          .card--anim{
+            box-shadow: 0 0 10px -3px #CCC;
+            .card__img {
+              background-size: 120%;
+              filter: saturate(1.10);
+            }
+          }
+        }
+      }
     }
   }
 }

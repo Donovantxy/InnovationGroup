@@ -1,8 +1,19 @@
 @import '~src/style/colors';
+@import '~src/style/variables';
 
-div {
-  cursor: pointer;
-  svg {
-    fill: $purple;
+.basket {
+  justify-content: flex-end;
+  display: flex;
+  div {
+    cursor: pointer;
+    svg {
+      transition: $basket-anim-time ease-out;
+      fill: $purple;
+    }
+    &.shine {
+      svg {
+        fill: lighten($purple, 25%);
+      }
+    }
   }
 }
