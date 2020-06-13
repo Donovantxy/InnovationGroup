@@ -1,9 +1,11 @@
-<div class="card">
-  <div class="card__img" 
-    [ngStyle]="{'background-image': 'url(assets/img/products/'+product.img+')'}">
-  </div>
+<div *ngIf="product" class="card">
+  <a [routerLink]="'/product/'+product.id">
+    <div class="card__img" 
+      [ngStyle]="{'background-image': 'url(assets/img/products/'+product.img+')'}">
+    </div>
+  </a>
   <div class="card__info">
-    <h3>{{product.name}}</h3>
+    <h3><a [routerLink]="'/product/'+product.id">{{product.name}}</a></h3>
     <p>{{product.description.substring(0, 100)}}...</p>
     <div class="card__info__price">{{product.price | currency:'GBP'}}</div>
     <div class="card__info__ico">

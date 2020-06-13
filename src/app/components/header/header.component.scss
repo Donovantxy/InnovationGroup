@@ -1,25 +1,42 @@
 @import '~src/style/variables';
 @import '~src/style/colors';
+@import '~src/style/breakpoints';
 
 .header {
   display: flex;
   flex: 1;
-  align-items: baseline;
-  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
   &__title {
     font-size: $fxxl;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
   &__basket {
     display: flex;
     align-items: baseline;
     label, &__amount {
-      font-size: 1.6rem;
+      font-size: $fm;
     }
     label {
       margin-right: 16px;
     }
     &__amount {
       color: $purple;
+    }
+  }
+  @include md {
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+    &__title {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      align-self: baseline;
+    }
+    label, &__amount {
+      font-size: $fl;
     }
   }
 }

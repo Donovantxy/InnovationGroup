@@ -6,7 +6,6 @@ export class AddProduct {
   constructor(public product: Product){}
 }
 
-export class RemoveProduct {
-  static readonly type = '[Basket] remove a product into the basket';
-  constructor(public product: Product){}
+export class EmptyBasket {
+  static readonly type = '[Basket] empty the basket';
 }

@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { mockProductsService, mockActivatedRoute } from './../../../test-utils/mock';
+import { ProductsService } from './../../services/products.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductComponent } from './product.component';
@@ -8,7 +11,11 @@ describe('ProductComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductComponent ]
+      declarations: [ ProductComponent ],
+      providers: [
+        { provide: ProductsService, useValue: mockProductsService },
+        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+      ]
     })
     .compileComponents();
   }));

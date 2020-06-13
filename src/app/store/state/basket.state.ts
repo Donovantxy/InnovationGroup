@@ -1,6 +1,7 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { EmptyBasket } from './../actions/basket.actions';
+import { State, Action, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { AddProduct, RemoveProduct } from '../actions/basket.actions';
+import { AddProduct, } from '../actions/basket.actions';
 
 export interface Product {
   id: string|number;
@@ -26,8 +27,10 @@ export interface BasketState {
 @Injectable()
 export class Basket {
 
+  constructor(private store: Store) {}
+
   @Action(AddProduct)
-  addProduct({ patchState, getState, setState }: StateContext<BasketState>, { product }: AddProduct) {
+  addProduct({ getState, setState }: StateContext<BasketState>, { product }: AddProduct) {
     const state = getState();
     setState({
       amount: state.amount + product.price,
@@ -35,9 +38,12 @@ export class Basket {
     });
   }
 
-  @Action(RemoveProduct)
-  removeProduct({ patchState, getState, setState }: StateContext<BasketState>) {
-    console.log(getState());
+  @Action(EmptyBasket)
+  removeProduct({ setState }: StateContext<EmptyBasket>) {
+    setState({
+      amount: 0,
+      products: []
+    });
   }
 
 }
