@@ -4,24 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+1 - Make sure you have **`git`** and **`npm`** installed on your machine
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2 - Run `git clone git@github.com:Donovantxy/InnovationGroup.git`
 
-## Build
+3 - Go to the folder `InnovationGroup` and run `npm install`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+4 - Run the application:
+ 1. WITH SERVER (NodeJs server) on **`master`** branch.
+  Run `npm run server`: the server will run on port `5555` and the front-end app will get open within the default browser on `http://localhost:5550/` (depending on machine proxy.config.json might need a small change).
+ 
+ 2. WITHOUT SERVER (taking data from a constant withing the frontend app) `npm start`. 
+    the front-end app will get open within the default browser on `http://localhost:5550/`.
