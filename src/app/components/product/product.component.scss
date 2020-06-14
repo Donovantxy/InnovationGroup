@@ -40,6 +40,7 @@
       &__buy {
         display: flex;
         align-items: flex-end;
+        @include no-selectable();
         span {
           font-size: $fl;
           color: $purple;

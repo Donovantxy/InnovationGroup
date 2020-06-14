@@ -113,6 +113,7 @@
       padding: 12px;
       box-shadow: 0px 0px 6px -4px;
       li {
+        @include no-selectable();
         cursor: pointer;
         max-width: 200px;
         display: flex;

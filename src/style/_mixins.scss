@@ -6,3 +6,10 @@
   -o-transition: $params;
   -webkit-transition: $params;
 }
+
+@mixin no-selectable() {
+  user-select: none;
+  -ms-user-select: none; 
+  -moz-user-select: none; 
+  -webkit-user-select: none; 
+}

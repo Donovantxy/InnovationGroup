@@ -1,9 +1,11 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
 import * as fs from 'fs';
+import * as child from 'child_process';
 
 const app: express.Application = express();
 const PORT = 5555;
+const exec = child.exec;
 
 console.log(__dirname);
 const productList = fs.readFileSync(__dirname + '/products.json', 'utf8');
@@ -32,13 +34,11 @@ app.get('/product-list/:id', (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`Server is listening at port - ${PORT}`);
-  // if (process.argv.includes('--withFrontend=1')) {
-  //   exec('npm run start:frontend', (error) => {
-  //     if (error) {
-  //       console.log(`ERROR ANGULAR\n${error}\n`);
-  //       return;
-  //     }
-  //     console.log('Angular is running...');
-  //   });
-  // }
+  exec('npm run start', (error) => {
+    if (error) {
+      console.log(`ERROR ANGULAR\n${error}\n`);
+      return;
+    }
+    console.log('Angular is running...');
+  });
 });
