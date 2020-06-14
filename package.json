@@ -5,8 +5,6 @@
     "ng": "ng",
     "start": "ng serve --aot -o --port 5550 --watch",
     "build": "ng build --aot",
-    "server": "tsc -p tsconfig.server.json && cp ./src/server/products.json ./dist/server",
-    "postserver": "node ./dist/server/server.js",
     "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
