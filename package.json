@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot -o --port 5550 --watch --proxy-config ./src/proxy.config.json",
+    "start": "ng serve --aot -o --port 5550 --watch",
     "build": "ng build --aot",
     "server": "tsc -p tsconfig.server.json && cp ./src/server/products.json ./dist/server",
     "postserver": "node ./dist/server/server.js",
