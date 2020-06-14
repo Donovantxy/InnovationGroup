@@ -2,7 +2,7 @@ import { Product } from 'src/app/store/state/basket.state';
 import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,9 @@ interface ResponseResource {
 })
 export class ProductsService {
 
+  sortedProducts$: BehaviorSubject<Product[]> = new BehaviorSubject([]);
+  private products: Product[];
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -23,9 +26,11 @@ export class ProductsService {
 
   getProducts(): Observable<any> {
     return this.http.get(environment.api.products)
-    .pipe(map((prod: Product[]) => {
-      prod.map(p => p.img = `id-${p.id}.jpg`);
-      return prod;
+    .pipe(map((prods: Product[]) => {
+      this.products = prods;
+      prods.map(p => p.img = `id-${p.id}.jpg`);
+      this.sortProducts('name');
+      return prods;
     }));
   }
 
@@ -36,7 +41,6 @@ export class ProductsService {
         if (resp.success) {
           return {...resp.product, img: `id-${resp.product.id}.jpg`};
         }
-        console.log(resp);
       }),
       catchError(err => {
         this.router.navigate(['/']);
@@ -44,5 +48,12 @@ export class ProductsService {
       })
     );
   }
+
+  sortProducts(attr: string) {
+    this.products.sort((a, b) => a[attr] > b[attr] ? 1 : -1 );
+    this.sortedProducts$.next(this.products);
+  }
+
+
 
 }

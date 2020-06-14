@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/store/state/basket.state';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -12,23 +12,20 @@ import { takeUntil } from 'rxjs/operators';
 export class ProductListComponent implements OnInit, OnDestroy {
 
   productsList: Product[];
-  isPriceSortActive = false;
   private onDestroy$: Subject<any> = new Subject();
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.productsService.getProducts()
-    .pipe(takeUntil(this.onDestroy$))
+    .pipe(
+      switchMap(() => this.productsService.sortedProducts$),
+      takeUntil(this.onDestroy$)
+    )
     .subscribe(products => {
-      this.productsList = products;
-      this.sortBy('name');
+      // it can work simply without destructuring [...products], but I wanted to show how to switch subject
+      this.productsList = [...products];
     });
-  }
-
-  sortBy(attr: string): void {
-      this.isPriceSortActive = attr === 'price';
-      this.productsList.sort((a, b) => a[attr] > b[attr] ? 1 : -1 );
   }
 
   ngOnDestroy() {

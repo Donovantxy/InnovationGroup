@@ -1,25 +1,13 @@
 @import '~src/style/variables';
 @import '~src/style/colors';
 @import '~src/style/breakpoints';
+@import '~src/style/mixins';
 
-.sort{
-  text-align: right;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  a {
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: $fs;
-    &:not(.active) {
-      color: $purple;
-      text-decoration: underline;
-    }
-  }
-}
 ul {
   flex-wrap: wrap;
   display: inline-flex;
   justify-content: center;
+  margin-top: 10px;
   li {
     margin-bottom: 30px;
   }
@@ -30,15 +18,15 @@ ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
+    margin-top: 20px;
     li {
       margin-bottom: 0px;
-      transform: scale(1);
-      transition: $card-anim-time ease-out;
+      @include trans($card-anim-time ease-out);
       &:hover {
-        transform: scale(1.05);
+        margin-top: -10px;
         ::ng-deep {
           .card--anim{
-            box-shadow: 0 0 10px -3px #CCC;
+            box-shadow: 0 5px 15px -1px #CCC;
             .card__img {
               background-size: 120%;
               filter: saturate(1.10);

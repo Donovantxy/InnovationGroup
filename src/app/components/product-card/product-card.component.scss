@@ -1,6 +1,7 @@
 @import '~src/style/variables';
 @import '~src/style/colors';
 @import '~src/style/breakpoints';
+@import '~src/style/mixins';
 
 .card {
   display: flex;
@@ -40,11 +41,13 @@
       margin-top: 10px;
     }
   }
-  &--anim {
-    transition: $card-anim-time;
-    .card__img {
-      transition: $card-anim-time;
-      filter: saturate(80%);
+  @include md {
+    &--anim {
+      @include trans($card-anim-time);
+      .card__img {
+        @include trans($card-anim-time);
+        filter: saturate(80%);
+      }
     }
   }
 }

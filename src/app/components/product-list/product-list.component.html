@@ -1,8 +1,4 @@
 
-<div class="sort">
-  <a (click)="sortBy('price')" [ngClass]="{active: isPriceSortActive}">Sort by price</a>
-  <a (click)="sortBy('name')" [ngClass]="{active: !isPriceSortActive}">Sort A-Z</a>
-</div>
 <ul class="list-product">
   <li *ngFor="let product of productsList">
     <app-product-card [product]=product></app-product-card>

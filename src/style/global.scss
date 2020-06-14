@@ -1,14 +1,16 @@
 @import "./colors";
 @import "./breakpoints";
+@import "./variables";
 
 body {
-  background-color: $grey;
+  background-color: $light-grey;
   font-family: sans-serif;
   font-size: 62.5%;
-  margin: 20px 15px;
-  // padding-bottom: 20px;
+  margin: 0 $left-right-gap 20px;
+  padding-top: $height-header-sm;
   @include lg {
-    max-width: 1000px;
+    padding-top: $height-header-md;
+    max-width: $container-max-width;
     margin: 0 auto 20px;
   }
   ul {

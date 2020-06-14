@@ -34,8 +34,10 @@ export const mockProducts = [
 ];
 
 export const mockProductsService = {
+  sortedProducts$: of(mockProducts),
   getProducts: () => of(mockProducts),
   getProduct: (id) => of(mockProducts.find(p => p.id === id)),
+  sortProducts: (sortBy: string) => {  }
 };
 
 export const mockActivatedRoute = {

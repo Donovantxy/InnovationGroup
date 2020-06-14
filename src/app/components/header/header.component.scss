@@ -1,44 +1,135 @@
 @import '~src/style/variables';
 @import '~src/style/colors';
 @import '~src/style/breakpoints';
+@import '~src/style/mixins';
 
 .header {
+  $over-max-width: 100px;
+  position: fixed;
+  background-color: #F2F2F2;
+  max-width: $container-max-width;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right:0;
+  height: $height-header-sm;
+  margin:auto;
+  padding: $left-right-gap;
+  box-sizing: border-box;
+  z-index: 10;
   display: flex;
-  flex: 1;
-  align-items: flex-end;
   flex-direction: column;
   &__title {
     font-size: $fxxl;
-    align-self: center;
+    text-align: center;
     margin-top: 10px;
     margin-bottom: 15px;
+    text-shadow: 1px 1px 2px $grey;
   }
   &__basket {
     display: flex;
     align-items: baseline;
+    justify-content: flex-end;
     label, &__amount {
       font-size: $fm;
     }
-    label {
-      margin-right: 16px;
-    }
     &__amount {
+      width: 76px;
+      text-align: right;
       color: $purple;
-      transition: $basket-anim-time;
+      @include trans($basket-anim-time);
       transform: scale(1);
       &--changing {
-        color: lighten($purple, 20%);
+        color: lighten($purple, $shining-perc);
         transform: scale(1.25);
       }
     }
   }
+  &__act{
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &__sort {
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: $fs;
+      color: $purple;
+      text-decoration: underline;
+      &--active{
+        text-decoration: none;
+        color: $black;
+      }
+    }
+    &__remove {
+      font-size: $fs;
+      color: $purple;
+      cursor: pointer;
+      text-decoration: underline;
+      text-align: right;
+      &--disabled {
+        color: $grey;
+      }
+    }
+  }
+  &__boughts {
+    position: relative;
+    display: none;
+    &--show {
+      display: flex;
+    }
+    &__list {
+      position: absolute;
+      z-index: 20;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      background: $light-grey;
+      border-radius: 5px;
+      padding: 8px;
+      box-shadow: 0px 0px 6px -4px;
+      li {
+        cursor: pointer;
+        width: 150px;
+        display: flex;
+        justify-content: space-between;
+        font-size: $fs;
+      }
+      &__name {
+        display: flex;
+        align-items: center;
+        &::before {
+          @include trans($basket-anim-time);
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 8px;
+          margin-right: 10px;
+          border: 2px solid $red;
+          background-color: lighten($red, 20%);
+          display: block;
+        }
+        &:hover {
+          &::before {
+            border-color: lighten($red, 20%);
+            background-color: $red;
+          }
+        }
+      }
+    }
+  }
+  
   @include md {
-    align-items: baseline;
-    justify-content: space-between;
-    flex-direction: row;
+    height: $height-header-md;
+    padding: 0 $over-max-width/2;
+    > div:not(.header__act):not(.header__boughts) {
+      display: flex;
+      width: 100%;
+      align-items: baseline;
+      justify-content: space-between;
+    }
     &__title {
       margin-top: 25px;
-      margin-bottom: 25px;
+      margin-bottom: 5px;
       align-self: baseline;
     }
     label, &__amount {

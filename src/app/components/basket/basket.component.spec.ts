@@ -28,7 +28,7 @@ describe('BasketComponent', () => {
     fixture = TestBed.createComponent(BasketComponent);
     component = fixture.componentInstance;
     spyOnAddProductToTheBasket = spyOn(component, 'addProductToTheBasket').and.callThrough();
-    element = fixture.debugElement.nativeElement.querySelector('div');
+    element = fixture.debugElement.nativeElement.querySelector('.basket > div');
     store = TestBed.inject(Store);
     fixture.detectChanges();
     store.dispatch(new EmptyBasket());
@@ -84,6 +84,7 @@ describe('BasketComponent', () => {
       component.product = mockProducts[4];
       element.click();
       amount += component.product.price;
+
       expect(component.addProductToTheBasket).toHaveBeenCalled();
       expect(store.selectSnapshot((state) => state.basket.amount)).toEqual(amount);
     });

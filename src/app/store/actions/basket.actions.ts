@@ -6,6 +6,11 @@ export class AddProduct {
   constructor(public product: Product){}
 }
 
+export class RemoveProductFromBasket {
+  static readonly type = '[Basket] remove a product from the basket';
+  constructor(public index: number){}
+}
+
 export class EmptyBasket {
   static readonly type = '[Basket] empty the basket';
 }

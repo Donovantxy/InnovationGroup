@@ -1,5 +1,6 @@
 @import '~src/style/colors';
 @import '~src/style/variables';
+@import '~src/style/mixins';
 
 .basket {
   justify-content: flex-end;
@@ -7,12 +8,12 @@
   div {
     cursor: pointer;
     svg {
-      transition: $basket-anim-time ease-out;
+      @include trans($basket-anim-time ease-out);
       fill: $purple;
     }
     &.shine {
       svg {
-        fill: lighten($purple, 25%);
+        fill: lighten($purple, $shining-perc);
       }
     }
   }

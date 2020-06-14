@@ -1,4 +1,4 @@
-import { EmptyBasket } from './../actions/basket.actions';
+import { EmptyBasket, RemoveProductFromBasket } from './../actions/basket.actions';
 import { State, Action, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { AddProduct, } from '../actions/basket.actions';
@@ -13,14 +13,14 @@ export interface Product {
 
 export interface BasketState {
   amount: number;
-  products: Array<Product>;
+  boughts: Array<Product>;
 }
 
 @State<BasketState>({
   name: 'basket',
   defaults: {
     amount: 0,
-    products: []
+    boughts: []
   }
 })
 
@@ -34,15 +34,26 @@ export class Basket {
     const state = getState();
     setState({
       amount: state.amount + product.price,
-      products: [...state.products, product]
+      boughts: [...state.boughts, product]
+    });
+  }
+
+  @Action(RemoveProductFromBasket)
+  removeProductFromBasket({ setState, getState }: StateContext<BasketState>, { index }: RemoveProductFromBasket) {
+    const { boughts: [...boughts], amount } = getState();
+    const price = boughts[index].price;
+    boughts.splice(index, 1);
+    setState({
+      amount: amount - price,
+      boughts
     });
   }
 
   @Action(EmptyBasket)
-  removeProduct({ setState }: StateContext<EmptyBasket>) {
+  removeProduct({ setState }: StateContext<BasketState>) {
     setState({
       amount: 0,
-      products: []
+      boughts: []
     });
   }
 
