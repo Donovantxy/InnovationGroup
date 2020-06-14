@@ -18,4 +18,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
  2. WITHOUT SERVER (taking data from a constant withing the frontend app) on **`master-no-server`** branch.
   Run `npm start` the front-end app will get open within the default browser on `http://localhost:5550/`.
 
-NOTE: running the front-end with the serveer for the first time app might takes 20-30secs
+NOTE: running the front-end with the serveer for the first time app might takes 35-40secs
