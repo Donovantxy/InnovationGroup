@@ -1,4 +1,4 @@
-import { RemoveProductFromBasket } from './../../store/actions/basket.actions';
+import { EmptyBasket, RemoveProductFromBasket } from './../../store/actions/basket.actions';
 import { Product } from 'src/app/store/state/basket.state';
 import { ProductsService } from './../../services/products.service';
 import { BasketState } from './../../store/state/basket.state';
@@ -6,6 +6,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 
+interface Boughts extends Product {
+  amount?: number;
+}
 
 @Component({
   selector: 'app-header',
@@ -17,8 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   amount: number;
   gotChanged = false;
   isPriceSortActive = false;
-  boughts: Product[];
+  boughts: {[id: string]: Boughts};
   isShowRemovinglist = false;
+  hasAnyBought = false;
+  objectKeys = Object.keys;
   private subscribe: Subscription;
 
   constructor(private store: Store, private productsService: ProductsService) { }
@@ -26,14 +31,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribe = this.store.subscribe( (st: {basket: BasketState}) => {
       this.amount = st.basket.amount;
-      this.boughts = st.basket.boughts;
+      this.setUniqeProducts(st.basket.boughts);
       this.gotChanged = true;
       setTimeout(() => {
         this.gotChanged = false;
       }, 200);
-      if (!this.boughts.length) {
-        this.isShowRemovinglist = false;
-      }
+      this.hasAnyBought = !!this.boughts && !!Object.keys(this.boughts).length;
+      this.isShowRemovinglist = this.isShowRemovinglist && !!this.hasAnyBought;
     });
   }
 
@@ -42,18 +46,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.productsService.sortProducts(by);
   }
 
-  removeFromBasket() {
-    if ( this.boughts.length ) {
-      this.isShowRemovinglist = true;
+  removeFromBasket(isAll = false) {
+    this.isShowRemovinglist = this.hasAnyBought;
+    if ( isAll ) {
+      this.store.dispatch(new EmptyBasket());
     }
   }
 
-  removeBought(index: number) {
-    this.store.dispatch(new RemoveProductFromBasket(index));
+  removeBought(key: number) {
+    this.store.dispatch(new RemoveProductFromBasket(key));
   }
 
   ngOnDestroy() {
     this.subscribe.unsubscribe();
+  }
+
+  private setUniqeProducts(prod: Product[]) {
+    let newBoughts: {[id: string]: Boughts};
+    prod.forEach((p, i) => {
+      if ( !!newBoughts && newBoughts[p.id] ){
+        newBoughts[p.id].amount++;
+      }
+      else {
+        newBoughts = !newBoughts
+        ? {[p.id]: {...p}}
+        : {...newBoughts, ...{[p.id]: {...p}}};
+        newBoughts[p.id].amount = 1;
+      }
+    });
+    this.boughts = newBoughts;
   }
 
 }

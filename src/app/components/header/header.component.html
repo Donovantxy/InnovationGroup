@@ -6,16 +6,18 @@
       <div class="header__basket__amount" [ngClass]="{'header__basket__amount--changing': gotChanged}">{{amount|currency:'GBP'}}</div>
     </div>
   </div>
-  <div *ngIf="boughts.length" class="header__boughts" [ngClass]="{'header__boughts--show': isShowRemovinglist}">
+  <div *ngIf="hasAnyBought" class="header__boughts" [ngClass]="{'header__boughts--show': isShowRemovinglist}">
+    <div class="header__boughts__close" title="close" (click)="this.isShowRemovinglist = false"></div>
     <ul class="header__boughts__list">
-      <li *ngFor="let bought of boughts; let i = index" (click)="removeBought(i)">
-        <span class="header__boughts__list__name">{{bought?.name}}</span>
-        <span>{{bought?.price|currency:'GBP'}}</span>
+      <li *ngFor="let key of objectKeys(boughts)" (click)="removeBought(key)">
+        <span class="header__boughts__list__name">{{boughts[key]?.name}}</span>
+        <span>{{boughts[key]?.amount}}</span>
       </li>
     </ul>
   </div>
   <div class="header__act">
-    <a (click)="removeFromBasket()" class="header__act__remove" [ngClass]="{'header__act__remove--disabled': !boughts.length}">remove products</a>
+    <a (click)="removeFromBasket(true)" class="header__act__remove" [ngClass]="{'header__act__remove--disabled': !hasAnyBought}">remove all</a>
+    <a (click)="removeFromBasket()" class="header__act__remove" [ngClass]="{'header__act__remove--disabled': !hasAnyBought}">remove products</a>
     <a (click)="sortBy('price')" class="header__act__sort" [ngClass]="{'header__act__sort--active': isPriceSortActive}">Sort by price</a>
     <a (click)="sortBy('name')" class="header__act__sort" [ngClass]="{'header__act__sort--active': !isPriceSortActive}">Sort A-Z</a>
   </div>

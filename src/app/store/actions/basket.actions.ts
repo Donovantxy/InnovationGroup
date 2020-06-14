@@ -8,7 +8,7 @@ export class AddProduct {
 
 export class RemoveProductFromBasket {
   static readonly type = '[Basket] remove a product from the basket';
-  constructor(public index: number){}
+  constructor(public id: number){}
 }
 
 export class EmptyBasket {

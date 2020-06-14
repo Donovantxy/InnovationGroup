@@ -7,8 +7,8 @@
   $over-max-width: 100px;
   position: fixed;
   background-color: #F2F2F2;
-  max-width: $container-max-width;
-  width: 100%;
+  max-width: $container-max-width + $over-max-width;
+  // width: 100% + 100;
   top: 0;
   left: 0;
   right:0;
@@ -49,9 +49,11 @@
     text-align: right;
     margin-top: 10px;
     margin-bottom: 10px;
+    > a {
+      margin-left: 10px;
+    }
     &__sort {
       cursor: pointer;
-      margin-left: 10px;
       font-size: $fs;
       color: $purple;
       text-decoration: underline;
@@ -74,39 +76,72 @@
   &__boughts {
     position: relative;
     display: none;
+    top:40px;
+    right: 10px;
+    @include trans($basket-anim-time);
+    opacity: .6;
+    &:hover {
+      opacity: 1;
+    }
     &--show {
       display: flex;
+    }
+    &__close {
+      $size: 14px;
+      position: absolute;
+      z-index: 50;
+      cursor: pointer;
+      width: $size;
+      height: $size;
+      border-radius: $size;
+      top: -$size/2;
+      right: -$size/2;
+      background: $red;
+      border: 2px solid $light-grey;
+      box-shadow: 1px -1px 4px -2px;
     }
     &__list {
       position: absolute;
       z-index: 20;
+      max-height: 200px;
+      overflow: scroll;
       right: 0;
       display: flex;
       flex-direction: column;
       background: $light-grey;
       border-radius: 5px;
-      padding: 8px;
+      padding: 12px;
       box-shadow: 0px 0px 6px -4px;
       li {
         cursor: pointer;
-        width: 150px;
+        max-width: 200px;
         display: flex;
         justify-content: space-between;
-        font-size: $fs;
+        font-size: $fn;
+        margin-bottom: 5px;
+        &:nth-last-child(1) {
+          margin-bottom: 0px;
+        }
       }
       &__name {
         display: flex;
         align-items: center;
+        margin-right: 10px;
         &::before {
           @include trans($basket-anim-time);
           content: '';
-          width: 8px;
-          height: 8px;
-          border-radius: 8px;
+          $size: 14px;
+          width: $size;
+          height: $size;
+          border-radius: $size;
           margin-right: 10px;
           border: 2px solid $red;
           background-color: lighten($red, 20%);
           display: block;
+          content: '-';
+          text-align: center;
+          line-height: $size;
+          font-size: 1.8rem;
         }
         &:hover {
           &::before {

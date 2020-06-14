@@ -6,7 +6,7 @@ import { appState } from 'src/app/store/state';
 import { NgxsModule } from '@ngxs/store';
 import { mockProductsService } from 'src/test-utils/mock';
 
-describe('HeaderComponent', () => {
+fdescribe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 

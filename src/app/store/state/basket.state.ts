@@ -39,10 +39,11 @@ export class Basket {
   }
 
   @Action(RemoveProductFromBasket)
-  removeProductFromBasket({ setState, getState }: StateContext<BasketState>, { index }: RemoveProductFromBasket) {
+  removeProductFromBasket({ setState, getState }: StateContext<BasketState>, { id }: RemoveProductFromBasket) {
     const { boughts: [...boughts], amount } = getState();
-    const price = boughts[index].price;
-    boughts.splice(index, 1);
+    const indexProd = boughts.findIndex(p => p.id === +id);
+    const price = boughts[indexProd].price;
+    boughts.splice(indexProd, 1);
     setState({
       amount: amount - price,
       boughts
