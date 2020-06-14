@@ -1,6 +1,7 @@
 @import '~src/style/variables';
 @import '~src/style/colors';
 @import '~src/style/breakpoints';
+@import '~src/style/mixins';
 
 .product {
   a {
@@ -40,6 +41,7 @@
       &__buy {
         display: flex;
         align-items: flex-end;
+        @include no-selectable();
         span {
           font-size: $fl;
           color: $purple;
