@@ -1,0 +1,39 @@
+@import '~src/style/variables';
+@import '~src/style/colors';
+@import '~src/style/breakpoints';
+@import '~src/style/mixins';
+
+ul {
+  flex-wrap: wrap;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 10px;
+  li {
+    margin-bottom: 30px;
+  }
+}
+
+@include md {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    margin-top: 20px;
+    li {
+      margin-bottom: 0px;
+      @include trans($card-anim-time ease-out);
+      &:hover {
+        margin-top: -10px;
+        ::ng-deep {
+          .card--anim{
+            box-shadow: 0 5px 15px -1px #CCC;
+            .card__img {
+              background-size: 120%;
+              filter: saturate(1.10);
+            }
+          }
+        }
+      }
+    }
+  }
+}

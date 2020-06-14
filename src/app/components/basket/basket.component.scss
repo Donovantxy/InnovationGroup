@@ -1,0 +1,20 @@
+@import '~src/style/colors';
+@import '~src/style/variables';
+@import '~src/style/mixins';
+
+.basket {
+  justify-content: flex-end;
+  display: flex;
+  div {
+    cursor: pointer;
+    svg {
+      @include trans($basket-anim-time ease-out);
+      fill: $purple;
+    }
+    &.shine {
+      svg {
+        fill: lighten($purple, $shining-perc);
+      }
+    }
+  }
+}

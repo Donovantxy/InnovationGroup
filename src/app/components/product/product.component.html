@@ -1,0 +1,17 @@
+<div class="product">
+  <a [routerLink]="'/'">&lt; back to fruit</a>
+  <div *ngIf="product" class="product__content">
+    <div class="product__content__img" 
+      [ngStyle]="{'background-image': 'url(assets/img/products/'+product.img+')'}">
+    </div>
+    <div class="product__content__info">
+      <h2>{{product.name}}</h2>
+      <div class="product__content__info__price">{{product.price|currency:'GBP'}}</div>
+      <div class="product__content__info__buy">
+        <app-basket [size]="40" [product]="product"></app-basket>
+        <span>Buy now</span>
+      </div>
+      <div class="product__content__info__description" [innerHTML]="product.description"></div>
+    </div>
+  </div>
+</div>

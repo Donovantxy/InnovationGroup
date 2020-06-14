@@ -1,0 +1,53 @@
+@import '~src/style/variables';
+@import '~src/style/colors';
+@import '~src/style/breakpoints';
+@import '~src/style/mixins';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 12px -2px #CCC;
+  &__img {
+    height: 170px;
+    background-size: 100%;
+    background-position: center;
+    cursor: pointer;
+  }
+  &__info {
+    background-color: $white;
+    padding: 15px;
+    h3 {
+      font-size: $fm;
+      font-weight: 500;
+      margin-top: 0;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: $black;
+      }
+    }
+    p {
+      font-size: $fs;
+    }
+    &__price {
+      font-size: $fn;
+      color: $purple;
+    }
+    &__ico {
+      text-align: right;
+      margin-top: 10px;
+    }
+  }
+  @include md {
+    &--anim {
+      @include trans($card-anim-time);
+      .card__img {
+        @include trans($card-anim-time);
+        filter: saturate(80%);
+      }
+    }
+  }
+}
