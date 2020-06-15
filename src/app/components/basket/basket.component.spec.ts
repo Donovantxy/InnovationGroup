@@ -1,12 +1,10 @@
-import { BasketState } from './../../store/state/basket.state';
 import { EmptyBasket } from './../../store/actions/basket.actions';
 import { mockProducts } from './../../../test-utils/mock';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasketComponent } from './basket.component';
 import { appState } from 'src/app/store/state';
 import { NgxsModule, Store } from '@ngxs/store';
-import { Basket } from 'src/app/store/state/basket.state';
 
 
 describe('BasketComponent', () => {
